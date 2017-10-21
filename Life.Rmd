@@ -21,7 +21,7 @@ summary(life$'1800')
 ```
 
 ```{r}
-hist(life$'1800', xlab='Life Expectancy', main='Life in 1800')
+hist(life$'1800', xlab='Life Expectancy', main='Life in 1800', col='lightgreen')
 ```
 
 
@@ -32,7 +32,7 @@ summary(life$'2016')
 ```
 
 ```{r}
-hist(life$'2016', xlab='Life Expectancy', main='Life in 2016')
+hist(life$'2016', xlab='Life Expectancy', main='Life in 2016', col='lightblue')
 ```
 
 
@@ -60,14 +60,14 @@ sum(is.na(lifel))
 ```
 
 ```{r}
-ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot()+
+ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot(colour = "coral2")+
   scale_x_discrete('Year', limits=c('1800', '2016'))
 ```
 
 ```{r}
 #We can see that life expecatncy starts to change for most of the world in the 1920's
-ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot(alpha=1/100) +
-  scale_x_discrete(limits = seq('1800','2016', by=10), breaks = seq('1800','2016', by=10))
+ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot(alpha=1/100, color='chartreuse2') +
+  scale_x_discrete(breaks = seq('1800','2016', by=25))
 ```
 
 
