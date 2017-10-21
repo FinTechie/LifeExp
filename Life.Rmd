@@ -1,0 +1,82 @@
+---
+title: "LifeExp"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+life <- read.csv('life.csv', header = T, check.names = F)
+```
+
+
+```{r}
+colnames(life)[1] <- 'country'
+```
+
+```{r}
+#Life expecancy in 1800
+summary(life$'1800')
+```
+
+```{r}
+hist(life$'1800', xlab='Life Expectancy', main='Life in 1800')
+```
+
+
+
+```{r}
+#Life expectancy in 2016
+summary(life$'2016')
+```
+
+```{r}
+hist(life$'2016', xlab='Life Expectancy', main='Life in 2016')
+```
+
+
+
+```{r}
+library(tidyr)
+lifel <- gather(life, 'year', 'life_exp', -'country')
+```
+
+
+```{r}
+#checked and saw lots of missing values that needed to be cleaned
+sum(is.na(lifel))
+```
+
+
+```{r}
+#ommiting the blank rows
+lifel <- na.omit(lifel)
+```
+
+
+```{r}
+sum(is.na(lifel))
+```
+
+```{r}
+ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot()+
+  scale_x_discrete('Year', limits=c('1800', '2016'))
+```
+
+```{r}
+#We can see that life expecatncy starts to change for most of the world in the 1920's
+ggplot(lifel, aes(x=year, y=life_exp)) +geom_boxplot(alpha=1/100) +
+  scale_x_discrete(limits = seq('1800','2016', by=10), breaks = seq('1800','2016', by=10))
+```
+
+
+
+
+
+
+
+
+
+
+
